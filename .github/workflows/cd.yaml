@@ -38,21 +38,21 @@ jobs:
         run: cargo build --release --target ${{ matrix.job.target }}
       - name: Compress (Unix)
         if: ${{ matrix.job.os != 'windows-latest' }}
-        run: zip -j espup-${{ matrix.job.target }}.zip target/${{ matrix.job.target }}/release/espup${{ matrix.job.binary-postfix }}
+        run: zip -j rnamer-${{ matrix.job.target }}.zip target/${{ matrix.job.target }}/release/rnamer${{ matrix.job.binary-postfix }}
       - name: Compress (Windows)
         if: ${{ matrix.job.os == 'windows-latest' }}
-        run: Compress-Archive target/${{ matrix.job.target }}/release/espup${{ matrix.job.binary-postfix }} espup-${{ matrix.job.target }}.zip
+        run: Compress-Archive target/${{ matrix.job.target }}/release/rnamer${{ matrix.job.binary-postfix }} rnamer-${{ matrix.job.target }}.zip
       - name: Upload compressed artifact
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: espup-${{ matrix.job.target }}.zip
+          file: rnamer-${{ matrix.job.target }}.zip
           tag: ${{ github.ref }}
       - name: Upload binary artifact
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/${{ matrix.job.target }}/release/espup${{ matrix.job.binary-postfix }}
-          asset_name: espup-${{ matrix.job.target }}${{ matrix.job.binary-postfix }}
+          file: target/${{ matrix.job.target }}/release/rnamer${{ matrix.job.binary-postfix }}
+          asset_name: rnamer-${{ matrix.job.target }}${{ matrix.job.binary-postfix }}
           tag: ${{ github.ref }}
 
