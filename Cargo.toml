@@ -1,7 +1,17 @@
 [package]
-edition = "2021"
-name    = "rnamer"
+name = "rnamer"
 version = "0.1.0"
+authors = ["Sergio Gasquez Arcos <sergio.gasquez@gmail.com>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/SergioGasquez/rnamer"
+rust-version = "1.64"
+description = """
+Command-line application that renames a Rust project.
+"""
+keywords = ["cli", "github", "pull-request"]
+categories = ["command-line-utilities", "utilities"]
 
 [dependencies]
 toml  = "0.7.6"
