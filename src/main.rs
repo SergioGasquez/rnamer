@@ -1,5 +1,5 @@
+use clap::Parser;
 use serde::{Deserialize, Serialize};
-use std::env;
 use std::fs::File;
 use std::io::{Read, Write};
 use toml::Value;
@@ -14,15 +14,23 @@ struct Package {
     name: String,
 }
 
+#[derive(Parser, Debug)]
+#[command(about, version)]
+struct Opts {
+    /// New pacakge name
+    #[arg(short, long)]
+    new_name: String,
+    /// Path to the Cargo.toml file
+    #[arg(short, long, default_value = "Cargo.toml")]
+    path: String,
+}
+
 fn main() {
-    // Get the first command-line argument as the new package name
-    let args: Vec<String> = env::args().collect();
-    if args.len() != 3 {
-        eprintln!("Usage: cargo run <new_package_name> <path_to_cargo_toml>");
-        return;
-    }
-    let new_package_name = &args[1];
-    let path_to_cargo_toml = &args[2];
+    // Retrieve the command line arguments using `clap`
+    let opts = Opts::parse();
+
+    let new_package_name = &opts.new_name;
+    let path_to_cargo_toml = &opts.path;
 
     // Read the content of Cargo.toml into a String
     let mut content = String::new();

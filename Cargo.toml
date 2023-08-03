@@ -14,5 +14,6 @@ keywords = ["cli", "github", "pull-request"]
 categories = ["command-line-utilities", "utilities"]
 
 [dependencies]
+clap  = { version = "4.3.8", features = ["derive"] }
 toml  = "0.7.6"
 serde = { version = "1.0.180", features = ["derive"] }
